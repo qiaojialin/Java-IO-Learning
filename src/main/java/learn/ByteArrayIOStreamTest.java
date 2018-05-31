@@ -21,7 +21,7 @@ public class ByteArrayIOStreamTest {
 
     private static void outputStreamTest() throws IOException {
 
-        //默认缓冲区大小 32 字节
+        // 默认缓冲区大小 32 字节
         MyByteArrayOutputStream out = new MyByteArrayOutputStream();
 
         // 写入 32 个字节，此时
@@ -30,6 +30,7 @@ public class ByteArrayIOStreamTest {
         }
         System.out.println("当前缓冲区长度：" + out.getBuf().length + " 当前数据长度：" + out.size());
 
+        // 写入 1 个字节，使所需容量为 33 个字节，大于原来 32 字节的容量
         out.write(2);
         System.out.println("当前缓冲区长度：" + out.getBuf().length + " 当前数据长度：" + out.size() + " 扩大到原来的两倍了");
 
