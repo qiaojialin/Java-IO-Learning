@@ -15,7 +15,7 @@ class MyByteArrayOutputStream extends ByteArrayOutputStream {
 public class ByteArrayIOStreamTest {
 
     public static void main(String[] args) throws IOException {
-//        outputStreamTest();
+        outputStreamTest();
         inputStreamTest();
     }
 
@@ -36,7 +36,8 @@ public class ByteArrayIOStreamTest {
         byte[] ret = out.toByteArray();
         print(ret);
 
-        out.write(new byte[128-33+3]);
+        // 写入新数据，使其空间正好比原空间的 2 倍大 3 个字节
+        out.write(new byte[out.getBuf().length*2-out.size()+3]);
         System.out.println("当前缓冲区长度：" + out.getBuf().length + " 当前数据长度：" + out.size() + " 扩大到需要的容量大小了");
 
     }
