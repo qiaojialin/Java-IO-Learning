@@ -34,6 +34,7 @@ public class ByteArrayIOStreamTest {
         out.write(2);
         System.out.println("当前缓冲区长度：" + out.getBuf().length + " 当前数据长度：" + out.size() + " 扩大到原来的两倍了");
 
+        // 取出数据
         byte[] ret = out.toByteArray();
         print(ret);
 
