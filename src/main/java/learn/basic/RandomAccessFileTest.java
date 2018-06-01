@@ -1,12 +1,14 @@
-package learn;
+package learn.basic;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class RandomAccessFileTest {
+
     private static String fileName = "src/main/resources/test.myfile";
     private static File file = new File(fileName);
+
     public static void main(String[] args) throws IOException {
         byte[] a = new byte[10];
         RandomAccessFile randomAccess = new RandomAccessFile(file, "rw");

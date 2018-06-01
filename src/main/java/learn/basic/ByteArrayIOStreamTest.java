@@ -1,4 +1,4 @@
-package learn;
+package learn.basic;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
