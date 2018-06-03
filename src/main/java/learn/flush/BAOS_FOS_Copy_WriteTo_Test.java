@@ -1,6 +1,8 @@
 package learn.flush;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 class MyRandomAccessFileOutputStream extends OutputStream {
 
@@ -37,8 +39,8 @@ class MyRandomAccessFileOutputStream extends OutputStream {
 
 public class BAOS_FOS_Copy_WriteTo_Test {
 
-    private static final String fileName = "src/main/resources/test.myfile";
-    private static final File file = new File(fileName);
+    private static final Path path = Paths.get("src", "main", "resources", "test.myfile");
+    private static final File file = path.toFile();
     private static int size = 1024*1024;
     private static byte[] b1 = new byte[size];
     private static ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -52,7 +54,7 @@ public class BAOS_FOS_Copy_WriteTo_Test {
 
         copyToRaf();
 
-//        writeToMyRaf();
+        writeToMyRaf();
     }
 
     // 将 BAOS 中的数据写入 MyRandomAccessFileOutputStream

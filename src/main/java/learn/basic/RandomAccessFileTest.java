@@ -3,11 +3,13 @@ package learn.basic;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class RandomAccessFileTest {
 
-    private static String fileName = "src/main/resources/test.myfile";
-    private static File file = new File(fileName);
+    private static final Path path = Paths.get("src", "main", "resources", "test.myfile");
+    private static final File file = path.toFile();
 
     public static void main(String[] args) throws IOException {
         byte[] a = new byte[10];

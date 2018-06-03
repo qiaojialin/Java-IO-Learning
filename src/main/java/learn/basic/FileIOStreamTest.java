@@ -1,11 +1,13 @@
 package learn.basic;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileIOStreamTest {
 
-    private static final String fileName = "src/main/resources/test.myfile";
-    private static final File file = new File(fileName);
+    private static final Path path = Paths.get("src", "main", "resources", "test.myfile");
+    private static final File file = path.toFile();
 
     public static void main(String[] args) throws IOException {
         if (file.exists())

@@ -1,16 +1,19 @@
 package learn.flush;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * ByteArrayOutputStream to FileOutputStream
  */
 public class BAOS2FOSTest {
 
-    private static final String fileName = "src/main/resources/test.myfile";
-    private static final File file = new File(fileName);
+    private static final Path path = Paths.get("src", "main", "resources", "test.myfile");
+    private static final File file = path.toFile();
 
     public static void main(String[] args) throws IOException {
+        System.out.println(path);
         if (file.exists())
             file.delete();
 
