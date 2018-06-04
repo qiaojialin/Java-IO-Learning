@@ -22,6 +22,11 @@ class MyRandomAccessFileOutputStream extends OutputStream {
         raf.write(b);
     }
 
+    @Override
+    public void write(byte b[], int off, int len) throws IOException {
+        raf.write(b, off, len);
+    }
+
     public void seek(long pos) throws IOException {
         raf.seek(pos);
     }
@@ -41,7 +46,7 @@ public class BAOS_FOS_Copy_WriteTo_Test {
 
     private static final Path path = Paths.get("src", "main", "resources", "test.myfile");
     private static final File file = path.toFile();
-    private static int size = 1024*1024;
+    private static int size = 1024*1024*800;
     private static byte[] b1 = new byte[size];
     private static ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -52,9 +57,9 @@ public class BAOS_FOS_Copy_WriteTo_Test {
 
         copyToFOS();
 
-        copyToRaf();
-
         writeToMyRaf();
+
+        copyToRaf();
     }
 
     // 将 BAOS 中的数据写入 MyRandomAccessFileOutputStream
