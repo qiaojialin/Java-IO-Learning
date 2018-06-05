@@ -3,6 +3,8 @@ package learn.file;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public class MyFileFormat {
 
@@ -12,20 +14,6 @@ public class MyFileFormat {
     private File file;
     private int count = 0;
     private boolean isWrite;
-
-    public static void main(String[] args) throws IOException {
-        // 写数据、关闭文件
-        MyFileFormat myfile = new MyFileFormat("test.myfile", true);
-        for(int i = 0; i < 20; i++) {
-            myfile.write(i);
-        }
-        myfile.close();
-
-        // 读数据、关闭文件
-        myfile = new MyFileFormat("test.myfile", false);
-        myfile.read();
-        myfile.close();
-    }
 
     // 初始化文件读写接口
     public MyFileFormat(String pathStr, boolean isWrite) throws FileNotFoundException {
@@ -66,7 +54,7 @@ public class MyFileFormat {
     }
 
     // 先读 metadata，再读数据
-    public void read() throws IOException {
+    public int[] read() throws IOException {
         long offset = file.length() - 4;
         raf.seek(offset);
         byte[] bytes = new byte[4];
@@ -75,13 +63,32 @@ public class MyFileFormat {
         if(result != bytes.length)
             throw new IOException("not read enough bytes");
 
+        int[] ret = new int[count];
         raf.seek(0);
         for(int i = 0; i < count; i++) {
             result = raf.read(bytes);
             if(result != bytes.length)
                 throw new IOException("not read enough bytes");
             int value = Utils.bytesToInt(bytes);
-            System.out.print(value + " ");
+            ret[i] = value;
+        }
+        return ret;
+    }
+
+    public static void main(String[] args) throws IOException {
+        // 写数据、关闭文件
+        MyFileFormat myfile = new MyFileFormat("test.myfile", true);
+        for(int i = 0; i < 20; i++) {
+            myfile.write(i);
+        }
+        myfile.close();
+
+        // 读数据、关闭文件
+        myfile = new MyFileFormat("test.myfile", false);
+        int[] ret = myfile.read();
+        myfile.close();
+        for(int a: ret){
+            System.out.print(a + " ");
         }
     }
 
