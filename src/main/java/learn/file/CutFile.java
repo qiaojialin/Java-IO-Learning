@@ -28,6 +28,7 @@ public class CutFile {
             // 在文件最后 4 字节前截断文件
 //            RandomAccessFile raf = new RandomAccessFile(file, "rw");
 //            raf.setLength(file.length()-4);
+//            raf.getChannel().truncate(file.length()-4);
 //            raf.close();
 //            read();
 
